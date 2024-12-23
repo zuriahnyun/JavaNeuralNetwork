@@ -2,10 +2,13 @@ import java.util.*;
 
 
 public class JavaNeuralNetwork {
-    
+
     
     
     public static void main(String[] args){
+        
+    JavaNeuralNetwork Obj = new JavaNeuralNetwork();
+    
     
     // Inputs to the neural network are the outputs from the neurons in the previous layer
     // This so far is one single Neuron
@@ -25,7 +28,11 @@ public class JavaNeuralNetwork {
     // double[] weights3 = {0,2,2,3};
     
     // Turning it into a matrix
-    double[][] weights =  {{1.3,2.3,0.9,1.5},{2,3,0.9,1.5},{0,2,2,3}};
+    double[][] weights =  {
+    {1.3,2.3,0.9,1.5},
+    {2,3,0.9,1.5},
+    {0,2,2,3}
+    };
 
     double bias1 = -.4;
     double bias2 = -.3;
@@ -34,14 +41,39 @@ public class JavaNeuralNetwork {
     double[] biases = {-.4 ,-.3 , -.6};
 
 
-    double[] output ={ 
-        inputs[0] * weights1[0] + inputs[1] * weights1[1] + inputs[2] * weights1[2] + inputs[3] * weights1[3] + bias1,
-        inputs[0] * weights2[0] + inputs[1] * weights2[1] + inputs[2] * weights2[2] + inputs[3] * weights2[3] + bias2,
-        inputs[0] * weights3[0] + inputs[1] * weights3[1] + inputs[2] * weights3[2] + inputs[3] * weights3[3] + bias3 };
+    // Caveman Multiplication
+    // double[] output ={ 
+    //     inputs[0] * weights1[0] + inputs[1] * weights1[1] + inputs[2] * weights1[2] + inputs[3] * weights1[3] + bias1,
+    //     inputs[0] * weights2[0] + inputs[1] * weights2[1] + inputs[2] * weights2[2] + inputs[3] * weights2[3] + bias2,
+    //     inputs[0] * weights3[0] + inputs[1] * weights3[1] + inputs[2] * weights3[2] + inputs[3] * weights3[3] + bias3 };
     
+    double[] output = Obj.layer_outputs(inputs,weights,biases);
+
 
     // This is ouputing the weights to 3 ouput neurons
     System.out.println(Arrays.toString(output));
+
+    }
+
+
+    // Method to get the outputs
+    public double[] layer_outputs(double[] inputs,double[][] weights,double[] biases){
+
+        double[] layer_outputs = new double[inputs.length];
+
+        for(int i = 0; i < weights.length; i++){
+
+            for(int j = 0; j < weights[i].length; j++){
+                layer_outputs[j] = inputs[j] * weights[i][j];
+            }
+
+        }
+
+        for(int l = 0;l < weights[weights.length].length; l++){
+            layer_outputs[l] = layer_outputs[l] + biases[l];
+        }
+
+        return layer_outputs;
 
     }
 
@@ -83,6 +115,18 @@ public class JavaNeuralNetwork {
         }else{
             return sum;
         }
+        
+    }
+
+
+
+    // Softmax function is defined as:
+    // softmax(z_i) = exp(z_i)/sum(exp(z_j))
+
+    // sum is a the sum of the exponential leading up to the element i
+    public double softmax(double element, double sum){
+        
+        return Math.exp(element) / sum;
         
     }
 
