@@ -3,11 +3,23 @@ import java.util.*;
 
 public class JavaNeuralNetwork {
 
-    
+
+    double layers;
+    double neurons;
+    double StepSize;
+
+    public JavaNeuralNetwork(double layers,double neurons,double StepSize){
+        this.layers = layers;
+        this.neurons = neurons;
+        this.StepSize = StepSize;
+    }
+ 
     
     public static void main(String[] args){
-        
-    JavaNeuralNetwork Obj = new JavaNeuralNetwork();
+
+    
+
+    JavaNeuralNetwork Obj = new JavaNeuralNetwork(4,4,5);
     
     
     // Inputs to the neural network are the outputs from the neurons in the previous layer
@@ -34,9 +46,9 @@ public class JavaNeuralNetwork {
     {0,2,2,3}
     };
 
-    double bias1 = -.4;
-    double bias2 = -.3;
-    double bias3 = -.6;
+    // double bias1 = -.4;
+    // double bias2 = -.3;
+    // double bias3 = -.6;
 
     double[] biases = {-.4 ,-.3 , -.6};
 
@@ -57,6 +69,7 @@ public class JavaNeuralNetwork {
 
 
     // Method to get the outputs
+    // Fix this!!!!
     public double[] layer_outputs(double[] inputs,double[][] weights,double[] biases){
 
         double[] layer_outputs = new double[inputs.length];
