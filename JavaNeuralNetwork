@@ -75,16 +75,14 @@ public class JavaNeuralNetwork {
         double[] layer_outputs = new double[inputs.length];
 
         for(int i = 0; i < weights.length; i++){
-
+            double value;
             for(int j = 0; j < weights[i].length; j++){
-                layer_outputs[j] = inputs[j] * weights[i][j];
+                value = value + inputs[i] * weights[i][j];
             }
+            layer_outputs[i] = value + biases[i];
 
         }
 
-        for(int l = 0;l < weights[weights.length].length; l++){
-            layer_outputs[l] = layer_outputs[l] + biases[l];
-        }
 
         return layer_outputs;
 
