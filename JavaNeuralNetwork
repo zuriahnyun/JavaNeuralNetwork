@@ -7,17 +7,8 @@ public class JavaNeuralNetwork {
     double layers;
     double neurons;
     double StepSize;
-
-    public JavaNeuralNetwork(double layers,double neurons,double StepSize){
-        this.layers = layers;
-        this.neurons = neurons;
-        this.StepSize = StepSize;
-    }
  
-    
     public static void main(String[] args){
-
-    
 
     JavaNeuralNetwork Obj = new JavaNeuralNetwork(4,4,5);
     
@@ -29,6 +20,7 @@ public class JavaNeuralNetwork {
     // Adding an input and weight
     // Modeling a Layer, (3 Neurons)
     
+    //Jordan was here
 
     // 4x1
     double[] inputs = {1.1 , 1.5, 2, 1.3};
